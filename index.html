@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+        <title>Dragon Ball Online Skill Calculator</title>
+	    <meta name="description" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body onload="init();">
+		<table class="titlebar">
+		    <tr>
+		        <td class="titlebar-topleft"></td>
+		        <td class="titlebar-top"></td>
+		        <td class="titlebar-topright"></td>
+		    </tr>
+		    <tr>
+		        <td class="titlebar-left"></td>
+		        <td class="search-class">
+		        	<div class="search-class-row">
+		            	<a href="?lang=%%lang%%&class=Fighter">
+		            		<div>
+		            			<img class="search-class-icon" src="img/11_small.png">
+		            			Fighter
+		            		</div>
+						</a>
+		                <a href="?lang=%%lang%%&class=Swordsman">
+		                	<div>
+		                    	<img class="search-class-icon" src="img/17_small.png">
+		                        Swordsman
+		                    </div>
+		                </a>
+		            </div>
+		            <div class="search-class-row">
+		                <a href="?lang=%%lang%%&class=Crane-Hermit">
+		                    <div>
+		                        <img class="search-class-icon" src="img/12_small.png">
+		                        Crane Hermit
+		                    </div>
+		                </a>
+		                <a href="?lang=%%lang%%&class=Turtle-Hermit">
+		                    <div>
+		                        <img class="search-class-icon" src="img/18_small.png">
+		                        Turtle Hermit
+		                    </div>
+		                </a>
+		            </div>
+		            <div class="search-class-row">
+		                <a href="?lang=%%lang%%&class=Dark-Warrior">
+		                    <div>
+		                        <img class="search-class-icon" src="img/13_small.png">
+		                        Dark Warrior
+		                    </div>
+		                </a>
+		                <a href="?lang=%%lang%%&class=Shadow-Knight">
+		                    <div>
+		                        <img class="search-class-icon" src="img/19_small.png">
+		                        Shadow Knight
+		                    </div>
+		                </a>
+		            </div>
+		            <div class="search-class-row">
+		                <a href="?lang=%%lang%%&class=Dende-Priest">
+		                    <div>
+		                        <img class="search-class-icon" src="img/14_small.png">
+		                        Dende Priest
+		                    </div>
+		                </a>
+		                <a href="?lang=%%lang%%&class=Poko-Priest">
+		                    <div>
+		                        <img class="search-class-icon" src="img/20_small.png">
+		                        Poko Priest
+		                    </div>
+		                </a>
+		            </div>
+		            <div class="search-class-row">
+		                <a href="?lang=%%lang%%&class=Ultimate-Majin">
+			                <div>
+			                    <img class="search-class-icon" src="img/15_small.png">
+			                    Ultimate Majin
+			                </div>
+		                </a>
+		                <a href="?lang=%%lang%%&class=Grand-Chef-Majin">
+		                    <div>
+		                        <img class="search-class-icon" src="img/21_small.png">
+		                        Grand Chef Majin
+		                    </div>
+		                </a>
+		            </div>
+		            <div class="search-class-row">
+		                <a href="?lang=%%lang%%&class=Plasma-Majin">
+		                    <div>
+		                        <img class="search-class-icon" src="img/16_small.png">
+		                        Plasma Majin
+		                    </div>
+		                </a>
+		                <a href="?lang=%%lang%%&class=Karma-Majin">
+		                    <div>
+		                        <img class="search-class-icon" src="img/22_small.png">
+		                        Karma Majin
+		                    </div>
+		                </a>
+		            </div>
+		        <td class="titlebar-right"></td>
+		    </tr>
+		    <tr>
+		        <td class="titlebar-bottomleft"></td>
+		        <td class="titlebar-bottom"></td>
+		        <td class="titlebar-bottomright"></td>
+		    </tr>
+		</table>
+		<br>
+		<div class="skill-calc-intro" style="float: left;">
+		    Use the skill calculator below to experiment with how to spend your SP (skill points) in-game. Left click to spend
+		    a SP and right click to remove one.  Skills you can't remove points from are either required and/or cost no SP to
+		    learn.
+		    <br>
+		    <br>
+		    <div class="sp-remaining">
+		        Total SP Spent: <span id="remainingpoints">0</span>/69 (<u><a href="javascript:void(0)" onclick="reset(0, 0);">Reset</a></u>)
+		    </div>
+		</div>
+		<table width="100%" height="1px">
+		    <tr>
+		        <td height="1px">
+		            <div class="class-tree">
+		                <table>
+		                    <tr>
+		                        <td>
+		                            <table oncontextmenu="return false" onselectstart="return false" ondragstart="return false" class="titlebar">
+		                                <tbody>
+		                                    <tr>
+		                                        <td class="titlebar-topleft"></td>
+		                                        <td class="titlebar-top"></td>
+		                                        <td class="titlebar-topright"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-left"></td>
+		                                        <td>
+		                                            <div class="class-name">
+		                                                <img src="img/%%basic_class_id%%_small.png">
+		                                                %%basic_class%% Skills
+		                                            </div>
+		                                            <div class="class-sp">
+		                                                <span id="classpoints">0</span> SP (<u><a href="javascript:void(0)" onclick="reset(1, 1);">Reset</a></u>)
+		                                            </div>
+		                                        </td>
+		                                        <td class="titlebar-right"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-bottomleft"></td>
+		                                        <td class="titlebar-bottom"></td>
+		                                        <td class="titlebar-bottomright"></td>
+		                                    </tr>
+		                                </tbody>
+		                            </table>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td height="8px"></td>
+		                    </tr>
+		                    <tr>
+		                        <td>
+		                            <table oncontextmenu="return false" onselectstart="return false" ondragstart="return false" class="titlebar"><tbody><tr><td class="titlebar-topleft"></td><td class="titlebar-top"></td><td class="titlebar-topright"></td></tr>
+		                            <tr><td class="titlebar-left"></td><td><table class="skill-tree"><tr><td id="base-tree"></td></tr></table></td><td class="titlebar-right"></td></tr>
+		                            <tr><td class="titlebar-bottomleft"></td><td class="titlebar-bottom"></td><td class="titlebar-bottomright"></td></tr></tbody></table>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </div>
+		            <div class="master-class-tree">
+		                <table width="460px">
+		                    <tr>
+		                        <td>
+		                            <table oncontextmenu="return false" onselectstart="return false" ondragstart="return false" class="titlebar">
+		                                <tbody>
+		                                    <tr>
+		                                        <td class="titlebar-topleft"></td>
+		                                        <td class="titlebar-top"></td>
+		                                        <td class="titlebar-topright"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-left"></td>
+		                                        <td>
+		                                            <div class="class-name">
+		                                                <img src="img/%%master_class_id%%_small.png"> %%master_class%% Skills
+		                                            </div>
+		                                            <div class="class-sp">
+		                                                <span id="masterclasspoints">0</span> SP (<u><a href="javascript:void(0)" onclick="reset(2, 1);">Reset</a></u>)
+		                                            </div>
+		                                        </td>
+		                                        <td class="titlebar-right"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-bottomleft"></td>
+		                                        <td class="titlebar-bottom"></td>
+		                                        <td class="titlebar-bottomright"></td>
+		                                    </tr>
+		                                </tbody>
+		                            </table>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td height="8px"></td>
+		                    </tr>
+		                    <tr>
+		                        <td>
+		                            <table oncontextmenu="return false" onselectstart="return false" ondragstart="return false" class="titlebar">
+		                                <tbody>
+		                                    <tr>
+		                                        <td class="titlebar-topleft"></td>
+		                                        <td class="titlebar-top"></td>
+		                                        <td class="titlebar-topright"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-left"></td>
+		                                        <td>
+		                                            <table class="skill-tree">
+		                                                <tr>
+		                                                    <td id="mc-tree"></td>
+		                                                </tr>
+		                                            </table>
+		                                        </td>
+		                                        <td class="titlebar-right"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="titlebar-bottomleft"></td>
+		                                        <td class="titlebar-bottom"></td>
+		                                        <td class="titlebar-bottomright"></td>
+		                                    </tr>
+		                                </tbody>
+		                            </table>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td height="16px"></td>
+		                    </tr>
+		                    <tr>
+		                        <td>
+		                            <a href="" id="calcurl" style="text-decoration: none;">
+		                                <table width="100%">
+		                                    <tbody>
+		                                        <tr>
+		                                            <td class="lightblue-button-top-left"></td>
+		                                            <td class="lightblue-button-top">
+		                                                <a href="" id="calcurl2" style="text-decoration: none; color: #fff;">Link to this Build</a>
+		                                            </td>
+		                                            <td class="lightblue-button-top-right"></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="lightblue-button-bottom-left"></td>
+		                                            <td class="lightblue-button-bottom"></td>
+		                                            <td class="lightblue-button-bottom-right"></td>
+		                                        </tr>
+		                                    </tbody>
+		                                </table>
+		                            </a>
+		                            <div class="release">
+		                                After you've finished working on your build, use the link above to share it with others
+		                                or to save it for later.  To copy the link, right click on the button above and select
+		                                "Copy Link".
+		                            </div>
+		                            <br>
+		                            Tooltip Language:
+		                            &nbsp;&nbsp;<a href="" id="engurl"><img src="img/eng.png" title="English" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="korurl"><img src="img/kor.png" title="&#54620;&#44397;&#50612;" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="twurl"><img src="img/tw.png" title="&#20013;&#25991;" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="hkurl"><img src="img/hk.png" title="&#20013;&#25991;" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="fraurl"><img src="img/fra.png" title="Fran&ccedil;ais" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="polurl"><img src="img/pol.png" title="Polski" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="porurl"><img src="img/por.png" title="Portugu&ecirc;s" style="vertical-align: text-top;"></a>
+		                            &nbsp;&nbsp;<a href="" id="spnurl"><img src="img/spn.png" title="Espa&ntilde;ol" style="vertical-align: text-top;"></a>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </div>
+		        </td>
+		    </tr>
+		</table>
+
+		<script type="text/javascript">
+		    var class_data = JSON.parse('{"Martial-Artist":{"display_name":"Martial Artist","class_id":1,"basic_class":null,"master_classes":["Fighter","Swordsman"]},"Spiritualist":{"display_name":"Spiritualist","class_id":2,"basic_class":null,"master_classes":["Crane-Hermit","Turtle-Hermit"]},"Warrior":{"display_name":"Warrior","class_id":3,"basic_class":null,"master_classes":["Dark-Warrior","Shadow-Knight"]},"Dragon-Clan":{"display_name":"Dragon Clan","class_id":4,"basic_class":null,"master_classes":["Dende-Priest","Poko-Priest"]},"Mighty-Majin":{"display_name":"Mighty Majin","class_id":5,"basic_class":null,"master_classes":["Ultimate-Majin","Grand-Chef-Majin"]},"Wonder-Majin":{"display_name":"Wonder Majin","class_id":6,"basic_class":null,"master_classes":["Plasma-Majin","Karma-Majin"]},"Fighter":{"display_name":"Fighter","class_id":11,"basic_class":"Martial-Artist"},"Crane-Hermit":{"display_name":"Crane Hermit","class_id":12,"basic_class":"Spiritualist"},"Dark-Warrior":{"display_name":"Dark Warrior","class_id":13,"basic_class":"Warrior"},"Dende-Priest":{"display_name":"Dende Priest","class_id":14,"basic_class":"Dragon-Clan"},"Ultimate-Majin":{"display_name":"Ultimate Majin","class_id":15,"basic_class":"Mighty-Majin"},"Plasma-Majin":{"display_name":"Plasma Majin","class_id":16,"basic_class":"Wonder-Majin"},"Swordsman":{"display_name":"Swordsman","class_id":17,"basic_class":"Martial-Artist"},"Turtle-Hermit":{"display_name":"Turtle Hermit","class_id":18,"basic_class":"Spiritualist"},"Shadow-Knight":{"display_name":"Shadow Knight","class_id":19,"basic_class":"Warrior"},"Poko-Priest":{"display_name":"Poko Priest","class_id":20,"basic_class":"Dragon-Clan"},"Grand-Chef-Majin":{"display_name":"Grand Chef Majin","class_id":21,"basic_class":"Mighty-Majin"},"Karma-Majin":{"display_name":"Karma Majin","class_id":22,"basic_class":"Wonder-Majin"}}');
+
+
+		    var master_class = (new URL(window.location)).searchParams.get("class");
+		    var url = (new URL(window.location)).searchParams.get("build");
+		    var lang = (new URL(window.location)).searchParams.get("lang");
+
+		    master_class = master_class == null ? "Fighter" : master_class;
+		    url = url == null ? "0" : url;
+		    lang = lang == null ? "eng" : lang;
+
+		    var lang_file = document.createElement("script");
+		    lang_file.src = "js/strings/skill_calc_" + lang + ".js";
+		    document.body.appendChild(lang_file);
+
+		    document.body.innerHTML = document.body.innerHTML.replace(/%%basic_class%%/g, class_data[class_data[master_class].basic_class].display_name);
+		    document.body.innerHTML = document.body.innerHTML.replace(/%%basic_class_id%%/g, class_data[class_data[master_class].basic_class].class_id);
+		    document.body.innerHTML = document.body.innerHTML.replace(/%%master_class%%/g, class_data[master_class].display_name);
+		    document.body.innerHTML = document.body.innerHTML.replace(/%%master_class_id%%/g, class_data[master_class].class_id);
+		    document.body.innerHTML = document.body.innerHTML.replace(/%%lang%%/g, lang);
+
+		    master_class = class_data[master_class].class_id;
+		</script>
+		<script type="text/javascript" src="js/skill_data.js"></script>
+		<script type="text/javascript" src="js/skill_calc.js"></script>
+	</body>
+</html> 
